@@ -9,9 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/api/v1/demo")
 public class DemoController {
 
-	@GetMapping
-	public ResponseEntity<String> sayHello() {
-		return ResponseEntity.ok("Hello hi");
+	@GetMapping("/user")
+	public ResponseEntity<String> sayHelloUser() {
+		return ResponseEntity.ok("Hello user");
+	}
+
+	@GetMapping("/admin")
+	public ResponseEntity<String> sayHelloAdmin() {
+		return ResponseEntity.ok("Hello admin");
 	}
 
 }
