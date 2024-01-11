@@ -43,6 +43,7 @@ public class ApplicationConfig {
 	}
 
 
+	// Encoding and decoding password
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();

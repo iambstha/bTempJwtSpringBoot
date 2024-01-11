@@ -1,4 +1,4 @@
-package com.iambstha.bTempJwt.entity;
+package com.iambstha.bTempJwt.model;
 
 import java.util.Collection;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.iambstha.bTempJwt.enums.Role;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -30,15 +32,15 @@ public class User implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String firstName;
-	
+
 	private String lastName;
-	
+
 	private String email;
-	
+
 	private String password;
-	
+
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
@@ -51,7 +53,7 @@ public class User implements UserDetails {
 	public String getUsername() {
 		return email;
 	}
-	
+
 	@Override
 	public String getPassword() {
 		return password;
@@ -76,5 +78,5 @@ public class User implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-	
+
 }

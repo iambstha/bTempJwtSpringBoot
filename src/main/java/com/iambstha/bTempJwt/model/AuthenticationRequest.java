@@ -1,4 +1,4 @@
-package com.iambstha.bTempJwt.auth;
+package com.iambstha.bTempJwt.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RegisterRequest {
-	
-	private String firstname;
-	
-	private String lastname;
+public class AuthenticationRequest {
 	
 	private String email;
 	
