@@ -22,12 +22,18 @@ public class SecurityConfiguration {
 
 	private final AuthenticationProvider authenticationProvider;
 
+	private static final String[] AUTH_WHITELIST = { "/api/v1/auth/**", "/api-docs/**", "/v2/api-docs",
+			"/swagger-resources", "/swagger-resources/**", "/configuration/ui", "/configuration/security",
+			"/swagger-ui.html", "/swagger-ui.html/**", "/webjars/**", "/v3/api-docs/**", "/swagger-ui/**" };
+	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 		http.csrf(c -> c.disable())
-				.authorizeHttpRequests(requests -> requests.requestMatchers("/api/v1/auth/**","/swagger-ui/index.html#/**","/swagger-ui/index.html/**","/swagger-ui/index.html").permitAll().anyRequest()
-						.authenticated())
+				.authorizeHttpRequests(
+						requests -> requests.requestMatchers(AUTH_WHITELIST).permitAll()
+								.requestMatchers("/api/v1/demo/admin").hasRole("ADMIN")
+								.requestMatchers("/api/v1/demo/user").hasRole("USER").anyRequest().authenticated())
 				.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authenticationProvider(authenticationProvider)
 				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
